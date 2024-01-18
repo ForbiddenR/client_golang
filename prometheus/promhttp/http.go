@@ -181,7 +181,7 @@ func HandlerForTransactional(reg prometheus.TransactionalGatherer, opts HandlerO
 		}
 
 		// enc := expfmt.NewEncoder(w, contentType)
-		enc := expfmt.NewEncoder(w, expfmt.FmtProtoCompact)
+		enc := expfmt.NewEncoder(w, expfmt.FmtText)
 
 		// handleError handles the error according to opts.ErrorHandling
 		// and returns true if we have to abort after the handling.
