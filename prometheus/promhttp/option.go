@@ -16,7 +16,7 @@ package promhttp
 import (
 	"context"
 
-	"github.com/prometheus/client_golang/prometheus"
+	"github.com/ForbiddenR/client_golang/prometheus"
 )
 
 // Option are used to configure both handler (middleware) or round tripper.

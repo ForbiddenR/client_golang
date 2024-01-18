@@ -17,8 +17,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/push"
+	"github.com/ForbiddenR/client_golang/prometheus"
+	"github.com/ForbiddenR/client_golang/prometheus/push"
 )
 
 var (

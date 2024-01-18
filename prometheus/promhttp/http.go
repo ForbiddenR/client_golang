@@ -44,7 +44,7 @@ import (
 
 	"github.com/prometheus/common/expfmt"
 
-	"github.com/prometheus/client_golang/prometheus"
+	"github.com/ForbiddenR/client_golang/prometheus"
 )
 
 const (
@@ -207,6 +207,8 @@ func HandlerForTransactional(reg prometheus.TransactionalGatherer, opts HandlerO
 		}
 
 		for _, mf := range mfs {
+			mf.Help = nil
+			mf.Type = nil
 			if handleError(enc.Encode(mf)) {
 				return
 			}

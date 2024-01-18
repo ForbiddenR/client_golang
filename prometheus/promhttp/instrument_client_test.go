@@ -24,8 +24,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/testutil"
+	"github.com/ForbiddenR/client_golang/prometheus"
+	"github.com/ForbiddenR/client_golang/prometheus/testutil"
 
 	dto "github.com/prometheus/client_model/go"
 	"google.golang.org/protobuf/proto"

@@ -18,9 +18,9 @@ package httpmiddleware
 import (
 	"net/http"
 
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promauto"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/ForbiddenR/client_golang/prometheus"
+	"github.com/ForbiddenR/client_golang/prometheus/promauto"
+	"github.com/ForbiddenR/client_golang/prometheus/promhttp"
 )
 
 type Middleware interface {

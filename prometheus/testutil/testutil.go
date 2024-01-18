@@ -49,8 +49,8 @@ import (
 	"github.com/prometheus/common/expfmt"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/internal"
+	"github.com/ForbiddenR/client_golang/prometheus"
+	"github.com/ForbiddenR/client_golang/prometheus/internal"
 )
 
 // ToFloat64 collects all Metrics from the provided Collector. It expects that

@@ -20,7 +20,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/prometheus/client_golang/prometheus"
+	"github.com/ForbiddenR/client_golang/prometheus"
 )
 
 type untypedCollector struct{}
