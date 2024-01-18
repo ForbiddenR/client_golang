@@ -2,6 +2,8 @@ module github.com/prometheus/client_golang
 
 go 1.19
 
+replace github.com/prometheus/common => github.com/ForbiddenR/common v0.0.1
+
 require (
 	github.com/beorn7/perks v1.0.1
 	github.com/cespare/xxhash/v2 v2.2.0
