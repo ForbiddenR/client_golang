@@ -21,7 +21,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/ForbiddenR/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 func TestLabelCheck(t *testing.T) {

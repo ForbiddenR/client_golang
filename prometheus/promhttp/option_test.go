@@ -18,7 +18,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/ForbiddenR/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 type key int

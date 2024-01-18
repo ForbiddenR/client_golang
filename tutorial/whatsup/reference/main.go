@@ -33,13 +33,13 @@ import (
 	"github.com/oklog/run"
 	"github.com/prometheus/common/model"
 
-	"github.com/ForbiddenR/client_golang/api"
-	v1 "github.com/ForbiddenR/client_golang/api/prometheus/v1"
-	"github.com/ForbiddenR/client_golang/prometheus"
-	"github.com/ForbiddenR/client_golang/prometheus/collectors"
-	"github.com/ForbiddenR/client_golang/prometheus/promauto"
-	"github.com/ForbiddenR/client_golang/prometheus/promhttp"
-	"github.com/ForbiddenR/client_golang/tutorial/internal"
+	"github.com/prometheus/client_golang/api"
+	v1 "github.com/prometheus/client_golang/api/prometheus/v1"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/collectors"
+	"github.com/prometheus/client_golang/prometheus/promauto"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/prometheus/client_golang/tutorial/internal"
 )
 
 func main() {

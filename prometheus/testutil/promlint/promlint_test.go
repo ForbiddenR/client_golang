@@ -21,7 +21,7 @@ import (
 
 	dto "github.com/prometheus/client_model/go"
 
-	"github.com/ForbiddenR/client_golang/prometheus/testutil/promlint"
+	"github.com/prometheus/client_golang/prometheus/testutil/promlint"
 )
 
 type test struct {

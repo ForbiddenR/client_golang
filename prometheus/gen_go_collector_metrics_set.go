@@ -28,8 +28,8 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/ForbiddenR/client_golang/prometheus"
-	"github.com/ForbiddenR/client_golang/prometheus/internal"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/internal"
 
 	version "github.com/hashicorp/go-version"
 )
