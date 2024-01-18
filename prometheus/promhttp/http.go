@@ -207,8 +207,6 @@ func HandlerForTransactional(reg prometheus.TransactionalGatherer, opts HandlerO
 		}
 
 		for _, mf := range mfs {
-			mf.Help = nil
-			mf.Type = nil
 			if handleError(enc.Encode(mf)) {
 				return
 			}
