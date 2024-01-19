@@ -55,8 +55,8 @@ func addWithExemplar(obs prometheus.Counter, val float64, labels map[string]stri
 // See the example for InstrumentHandlerDuration for example usage.
 func InstrumentHandlerInFlight(g prometheus.Gauge, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		g.Inc()
-		defer g.Dec()
+		// g.Inc()
+		// defer g.Dec()
 		next.ServeHTTP(w, r)
 	})
 }
@@ -138,30 +138,30 @@ func InstrumentHandlerCounter(counter *prometheus.CounterVec, next http.Handler,
 		o.apply(hOpts)
 	}
 
-	// Curry the counter with dynamic labels before checking the remaining labels.
-	code, method := checkLabels(counter.MustCurryWith(hOpts.emptyDynamicLabels()))
+	// // Curry the counter with dynamic labels before checking the remaining labels.
+	// code, method := checkLabels(counter.MustCurryWith(hOpts.emptyDynamicLabels()))
 
-	if code {
-		return func(w http.ResponseWriter, r *http.Request) {
-			d := newDelegator(w, nil)
-			next.ServeHTTP(d, r)
+	// if code {
+	// 	return func(w http.ResponseWriter, r *http.Request) {
+	// 		d := newDelegator(w, nil)
+	// 		next.ServeHTTP(d, r)
 
-			l := labels(code, method, r.Method, d.Status(), hOpts.extraMethods...)
-			for label, resolve := range hOpts.extraLabelsFromCtx {
-				l[label] = resolve(r.Context())
-			}
-			addWithExemplar(counter.With(l), 1, hOpts.getExemplarFn(r.Context()))
-		}
-	}
+	// 		l := labels(code, method, r.Method, d.Status(), hOpts.extraMethods...)
+	// 		for label, resolve := range hOpts.extraLabelsFromCtx {
+	// 			l[label] = resolve(r.Context())
+	// 		}
+	// 		addWithExemplar(counter.With(l), 1, hOpts.getExemplarFn(r.Context()))
+	// 	}
+	// }
 
 	return func(w http.ResponseWriter, r *http.Request) {
 		next.ServeHTTP(w, r)
 
-		l := labels(code, method, r.Method, 0, hOpts.extraMethods...)
-		for label, resolve := range hOpts.extraLabelsFromCtx {
-			l[label] = resolve(r.Context())
-		}
-		addWithExemplar(counter.With(l), 1, hOpts.getExemplarFn(r.Context()))
+		// l := labels(code, method, r.Method, 0, hOpts.extraMethods...)
+		// for label, resolve := range hOpts.extraLabelsFromCtx {
+		// 	l[label] = resolve(r.Context())
+		// }
+		// addWithExemplar(counter.With(l), 1, hOpts.getExemplarFn(r.Context()))
 	}
 }
 
