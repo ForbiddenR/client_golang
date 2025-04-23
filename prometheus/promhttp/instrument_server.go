@@ -55,8 +55,8 @@ func addWithExemplar(obs prometheus.Counter, val float64, labels map[string]stri
 // See the example for InstrumentHandlerDuration for example usage.
 func InstrumentHandlerInFlight(g prometheus.Gauge, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		g.Inc()
-		defer g.Dec()
+		// g.Inc()
+		// defer g.Dec()
 		next.ServeHTTP(w, r)
 	})
 }
@@ -87,31 +87,31 @@ func InstrumentHandlerDuration(obs prometheus.ObserverVec, next http.Handler, op
 		o.apply(hOpts)
 	}
 
-	// Curry the observer with dynamic labels before checking the remaining labels.
-	code, method := checkLabels(obs.MustCurryWith(hOpts.emptyDynamicLabels()))
+	// // Curry the observer with dynamic labels before checking the remaining labels.
+	// code, method := checkLabels(obs.MustCurryWith(hOpts.emptyDynamicLabels()))
 
-	if code {
-		return func(w http.ResponseWriter, r *http.Request) {
-			now := time.Now()
-			d := newDelegator(w, nil)
-			next.ServeHTTP(d, r)
+	// if code {
+	// 	return func(w http.ResponseWriter, r *http.Request) {
+	// 		now := time.Now()
+	// 		d := newDelegator(w, nil)
+	// 		next.ServeHTTP(d, r)
 
-			l := labels(code, method, r.Method, d.Status(), hOpts.extraMethods...)
-			for label, resolve := range hOpts.extraLabelsFromCtx {
-				l[label] = resolve(r.Context())
-			}
-			observeWithExemplar(obs.With(l), time.Since(now).Seconds(), hOpts.getExemplarFn(r.Context()))
-		}
-	}
+	// 		l := labels(code, method, r.Method, d.Status(), hOpts.extraMethods...)
+	// 		for label, resolve := range hOpts.extraLabelsFromCtx {
+	// 			l[label] = resolve(r.Context())
+	// 		}
+	// 		observeWithExemplar(obs.With(l), time.Since(now).Seconds(), hOpts.getExemplarFn(r.Context()))
+	// 	}
+	// }
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		now := time.Now()
+		// now := time.Now()
 		next.ServeHTTP(w, r)
-		l := labels(code, method, r.Method, 0, hOpts.extraMethods...)
-		for label, resolve := range hOpts.extraLabelsFromCtx {
-			l[label] = resolve(r.Context())
-		}
-		observeWithExemplar(obs.With(l), time.Since(now).Seconds(), hOpts.getExemplarFn(r.Context()))
+		// l := labels(code, method, r.Method, 0, hOpts.extraMethods...)
+		// for label, resolve := range hOpts.extraLabelsFromCtx {
+		// 	l[label] = resolve(r.Context())
+		// }
+		// observeWithExemplar(obs.With(l), time.Since(now).Seconds(), hOpts.getExemplarFn(r.Context()))
 	}
 }
 

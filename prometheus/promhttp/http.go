@@ -295,27 +295,27 @@ func InstrumentMetricHandler(reg prometheus.Registerer, handler http.Handler) ht
 	cnt.WithLabelValues("200")
 	cnt.WithLabelValues("500")
 	cnt.WithLabelValues("503")
-	if err := reg.Register(cnt); err != nil {
-		are := &prometheus.AlreadyRegisteredError{}
-		if errors.As(err, are) {
-			cnt = are.ExistingCollector.(*prometheus.CounterVec)
-		} else {
-			panic(err)
-		}
-	}
+	// if err := reg.Register(cnt); err != nil {
+	// 	are := &prometheus.AlreadyRegisteredError{}
+	// 	if errors.As(err, are) {
+	// 		cnt = are.ExistingCollector.(*prometheus.CounterVec)
+	// 	} else {
+	// 		panic(err)
+	// 	}
+	// }
 
 	gge := prometheus.NewGauge(prometheus.GaugeOpts{
 		Name: "promhttp_metric_handler_requests_in_flight",
 		Help: "Current number of scrapes being served.",
 	})
-	if err := reg.Register(gge); err != nil {
-		are := &prometheus.AlreadyRegisteredError{}
-		if errors.As(err, are) {
-			gge = are.ExistingCollector.(prometheus.Gauge)
-		} else {
-			panic(err)
-		}
-	}
+	// if err := reg.Register(gge); err != nil {
+	// 	are := &prometheus.AlreadyRegisteredError{}
+	// 	if errors.As(err, are) {
+	// 		gge = are.ExistingCollector.(prometheus.Gauge)
+	// 	} else {
+	// 		panic(err)
+	// 	}
+	// }
 
 	return InstrumentHandlerCounter(cnt, InstrumentHandlerInFlight(gge, handler))
 }
@@ -353,7 +353,7 @@ const (
 // log.Logger from the standard library implements this interface, and it is
 // easy to implement by custom loggers, if they don't do so already anyway.
 type Logger interface {
-	Println(v ...interface{})
+	Println(v ...any)
 }
 
 // HandlerOpts specifies options how to serve metrics via an http.Handler. The
